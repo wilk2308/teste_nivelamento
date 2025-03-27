@@ -16,7 +16,7 @@ pip install -r requirements.txt
 Baixa arquivos PDF do site da ANS e os compacta em um ZIP.
 
 ```bash
-python web_scraping_ans.py
+python scripts/web_scraping_ans.py
 ```
 
 ✔ **Saída esperada:**
@@ -27,23 +27,37 @@ python web_scraping_ans.py
 Extrai tabelas de um PDF, gera um CSV estruturado e compacta o arquivo.
 
 ```bash
-python data_transformation.py
+python scripts/data_transformation.py
 ```
 
 ✔ **Saída esperada:**
 - Arquivo `Rol_de_Procedimentos.csv` gerado
 - Arquivo ZIP `Teste_William_Sousa.zip` criado
 
+### 3️⃣ Operações de Banco de Dados
+Criação e manipulação das tabelas no banco de dados.
+
+```bash
+psql -U usuario -d banco -f sql/database_operations.sql
+```
+
+✔ **Saída esperada:**
+- Tabelas `operadoras` e `demonstracoes_contabeis` criadas e populadas.
+- Consultas SQL executadas com sucesso.
+
 ## 📂 Estrutura do Projeto
 ```
 /
+├── dados/                    # Arquivos CSV e outros dados brutos
 ├── downloads/                # PDFs baixados
-├── web_scraping_ans.py       # Script de Web Scraping
-├── data_transformation.py    # Script de transformação de dados
+├── scripts/                  # Scripts Python
+│   ├── web_scraping_ans.py   # Script de Web Scraping
+│   ├── data_transformation.py # Script de transformação de dados
+├── sql/                      # Scripts SQL
+│   ├── database_operations.sql # Criação e manipulação do banco
 ├── requirements.txt          # Dependências do projeto
 ├── README.md                 # Documentação
 ```
 
 ## 📜 Licença
 Este projeto é apenas para fins de avaliação técnica.
-
