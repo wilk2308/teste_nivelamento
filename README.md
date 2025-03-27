@@ -61,6 +61,7 @@ python scripts/data_transformation.py
 ✔ **Saída esperada:**  
 - Arquivo `Rol_de_Procedimentos.csv` gerado  
 - Arquivo ZIP `Teste_William_Sousa.zip` criado  
+- Substituição das abreviações das colunas OD e AMB pelas descrições completas, conforme a legenda no rodapé 
 
 ---
 
