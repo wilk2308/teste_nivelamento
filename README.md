@@ -92,6 +92,7 @@ mysql -u usuario -p < sql/import_data.sql
 
 - Os arquivos CSV devem estar no diretório correto para leitura pelo MySQL.
 
+
 🔹 Opção 2: Importação via Python (mysql-connector-python.py)
 
 Usa pandas para carregar os CSVs e insere os dados linha por linha, funcionando mesmo sem permissões especiais.
