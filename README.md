@@ -29,7 +29,7 @@ pip install -r requirements.txt
 │   ├── consulta.sql             # Consultas analíticas
 │   ├── database_operations.sql  # Criação e manipulação do banco
 │   ├── import_data.sql          # Importação de dados do CSV
-├── mysql-connector-python.py   # Conexão Python com MySQL
+├── mysql-connector-python.py   # Conexão Python com MySQL (Importação de dados do CSV alternativo)
 ├── requirements.txt            # Dependências do projeto
 ├── README.md                   # Documentação
 ```
@@ -76,9 +76,35 @@ mysql -u usuario -p < sql/database_operations.sql
 ```  
 
 2️⃣ **Importar dados CSV**  
+Para carregar os arquivos CSV no MySQL, há duas opções disponíveis:
+
+🔹 Opção 1: Importação via SQL (import_data.sql)
+
+Utiliza o comando LOAD DATA INFILE, que é mais rápido, mas requer permissões adequadas no MySQL.
+
 ```bash
 mysql -u usuario -p < sql/import_data.sql
 ```  
+✔ Requisitos:
+
+- O MySQL precisa permitir a importação de arquivos (secure-file-priv).
+
+- Os arquivos CSV devem estar no diretório correto para leitura pelo MySQL.
+
+🔹 Opção 2: Importação via Python (mysql-connector-python.py)
+
+Usa pandas para carregar os CSVs e insere os dados linha por linha, funcionando mesmo sem permissões especiais.
+
+```bash
+python mysql-connector-python.py
+``` 
+✔ Requisitos:
+
+- Python instalado com as dependências (mysql-connector-python, pandas).
+
+- Os arquivos CSV devem estar na pasta dados/.
+
+Ambas as opções garantem que os dados sejam carregados corretamente no banco de dados test. 🚀
 
 3️⃣ **Executar consultas analíticas**  
 ```bash
