@@ -76,6 +76,7 @@ mysql -u usuario -p < sql/database_operations.sql
 ```  
 
 2️⃣ **Importar dados CSV**  
+
 Para carregar os arquivos CSV no MySQL, há duas opções disponíveis:
 
 🔹 Opção 1: Importação via SQL (import_data.sql)
