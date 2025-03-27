@@ -110,7 +110,7 @@ Ambas as opções garantem que os dados sejam carregados corretamente no banco d
 
 3️⃣ **Executar consultas analíticas**  
 ```bash
-mysql -u usuario -p < sql/consulta.sql
+mysql -u usuario -p banco < sql/consulta.sql
 ```  
 
 ✔ **Consultas Implementadas:**  
