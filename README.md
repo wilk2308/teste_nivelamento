@@ -60,7 +60,7 @@ python scripts/data_transformation.py
 ```  
 ✔ **Saída esperada:**  
 - Arquivo `Rol_de_Procedimentos.csv` gerado  
-- Arquivo ZIP `Teste_{seu_nome}.zip` criado  
+- Arquivo ZIP `Teste_William_Sousa.zip` criado  
 
 ---
 
