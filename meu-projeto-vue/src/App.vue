@@ -50,13 +50,17 @@ export default {
       searchTerm: '',
       loading: false,
       detalhesOperadora: null,  // Para armazenar os detalhes da operadora
+      apiBaseUrl: process.env.NODE_ENV === 'production' 
+  ? 'https://teste-nivelamento.onrender.com' 
+  : 'http://localhost:8000'
+
     };
   },
   methods: {
     buscarOperadoras() {
       if (this.searchTerm) {
         this.loading = true;
-        axios.get(`http://localhost:8000/buscar?q=${this.searchTerm}`)
+        axios.get(`${this.apiBaseUrl}/buscar?q=${this.searchTerm}`)
           .then((response) => {
             this.operadoras = response.data; // Armazenar os resultados
           })
