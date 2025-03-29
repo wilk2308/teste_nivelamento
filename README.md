@@ -1,3 +1,4 @@
+
 # 📌 Testes de Nivelamento
 
 Este repositório contém a implementação dos testes de nivelamento, abordando:
@@ -15,24 +16,82 @@ Antes de executar os scripts, instale as dependências:
 pip install -r requirements.txt
 ```  
 
-## 🚀 Estrutura do Projeto  
+## 🌱 Ambiente Virtual (Virtual Environment)
+
+Recomenda-se o uso de um ambiente virtual para garantir que todas as dependências sejam isoladas e não interfiram em outros projetos. Para criar e ativar um ambiente virtual, siga os passos abaixo:
+
+1. **Criar o ambiente virtual**:
+   ```bash
+   python -m venv venv
+   ```
+
+2. **Ativar o ambiente virtual**:
+   - No **Windows**:
+     ```bash
+     .\venv\Scripts\activate
+     ```
+   - No **Mac/Linux**:
+     ```bash
+     source venv/bin/activate
+     ```
+
+3. **Instalar as dependências**:
+   Após ativar o ambiente virtual, instale as dependências do projeto:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## 🚀 Estrutura do Projeto
 
 ```
 /
-├── dados/                      # Arquivos CSV usados no projeto
+├── dados/                        # Arquivos CSV usados no projeto
 │   ├── demonstracoes_contabeis.csv
 │   ├── Relatorio_cadop.csv
-├── scripts/                    # Scripts Python
-│   ├── web_scraping_ans.py      # Web Scraping
-│   ├── data_transformation.py   # Transformação de dados
-├── sql/                        # Scripts SQL
-│   ├── consulta.sql             # Consultas analíticas
-│   ├── database_operations.sql  # Criação e manipulação do banco
-│   ├── import_data.sql          # Importação de dados do CSV
-├── mysql-connector-python.py   # Conexão Python com MySQL (Importação de dados do CSV alternativo)
-├── requirements.txt            # Dependências do projeto
-├── README.md                   # Documentação
+├── meu-projeto-vue/              # Frontend Vue.js
+├── scripts/                      # Scripts Python
+│   ├── web_scraping_ans.py       # Web Scraping
+│   ├── data_transformation.py    # Transformação de dados
+├── sql/                          # Scripts SQL
+│   ├── consulta.sql              # Consultas analíticas
+│   ├── database_operations.sql   # Criação e manipulação do banco
+│   ├── import_data.sql           # Importação de dados do CSV
+├── API Busca Operadoras.postman_collection.json  # Coleção do Postman
+├── mysql-connector-python.py     # Conexão Python com MySQL
+├── api_operadoras.py             # API Python para busca de operadoras
+├── requirements.txt              # Dependências do projeto
+├── README.md                     # Documentação
 ```
+
+## 📝 Passos para Execução
+
+### 1️⃣ Rodar o Backend (API Python)
+
+A API está implementada no arquivo `api_operadoras.py`. Para rodar a API, use o `uvicorn`:
+
+- **Rodar a API com Uvicorn**:
+  ```bash
+  python -m uvicorn api_operadoras:app --reload
+  ```
+
+### 2️⃣ Rodar o Frontend (Vue.js)
+
+Entre na pasta `meu-projeto-vue` e execute o servidor de desenvolvimento:
+
+- **Instalar dependências do Vue.js**:
+  ```bash
+  cd meu-projeto-vue
+  npm install
+  ```
+
+- **Rodar o servidor Vue.js**:
+  ```bash
+  npm run serve
+  ```
+
+### 3️⃣ Testar a API no Postman
+
+Importe o arquivo `API Busca Operadoras.postman_collection.json` para o Postman e execute os endpoints configurados.
 
 ---
 
@@ -142,4 +201,4 @@ python app.py
 - 📄 [Demonstrações Contábeis](https://dadosabertos.ans.gov.br/FTP/PDA/demonstracoes_contabeis/)  
 - 📄 [Dados cadastrais das operadoras](https://dadosabertos.ans.gov.br/FTP/PDA/operadoras_de_plano_de_saude_ativas/)  
 
-📌 Este projeto é **confidencial** e não deve ser compartilhado sem autorização.  
+📌 Este projeto é **confidencial** e não deve ser compartilhado sem autorização.

@@ -16,14 +16,14 @@ LIMIT 10;
 -- Top 10 operadoras com maiores despesas em sinistros no último ano
 SELECT 
     REG_ANS, 
-    SUM(VL_SALDO_FINAL - VL_SALDO_INICIAL) AS total_despesas
+    FORMAT(SUM(VL_SALDO_FINAL - VL_SALDO_INICIAL), 2) AS total_despesas
 FROM 
     demonstracoes_contabeis
 WHERE 
     YEAR(DATA) = YEAR(CURDATE()) - 1
-    AND DESCRICAO LIKE '%EVENTOS/SINISTROS CONHECIDOS%' -- Filtra pela categoria
+    AND DESCRICAO LIKE '%EVENTOS/SINISTROS CONHECIDOS%' 
 GROUP BY 
     REG_ANS
 ORDER BY 
-    total_despesas DESC
+    SUM(VL_SALDO_FINAL - VL_SALDO_INICIAL) DESC
 LIMIT 10;
