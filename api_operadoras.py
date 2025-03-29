@@ -9,12 +9,13 @@ app = FastAPI()
 origins = [
     "http://localhost:8080",  # Permitir o Vue.js rodando localmente
     "http://127.0.0.1:8080",  # Caso use o 127.0.0.1
+    "https://teste-nivelamento.vercel.app",  # Permitir o Vercel
 ]
 
 # Configurar o CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Permite acesso apenas de localhost:8080
+    allow_origins=origins,  # Permite acesso de localhost:8080 e o domínio do Vercel
     allow_credentials=True,
     allow_methods=["*"],  # Permite todos os métodos (GET, POST, etc)
     allow_headers=["*"],  # Permite todos os cabeçalhos
