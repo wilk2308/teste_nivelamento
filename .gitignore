@@ -1,2 +1,3 @@
 dados/*.csv
 dados/*.py
+__pycache__
