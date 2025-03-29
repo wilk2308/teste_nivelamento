@@ -185,13 +185,13 @@ mysql -u usuario -p banco < sql/consulta.sql
 
 1️⃣ **Rodar o servidor Python**  
 ```bash
-python app.py
+python -m uvicorn api_operadoras:app --reload
 ```  
 
 2️⃣ **Acessar a API via Postman**  
 
 ✔ **Endpoints Implementados:**  
-- `/buscar_operadoras?termo=<pesquisa>` → Retorna operadoras mais relevantes  
+- `/buscar?q=<pesquisa>` → Retorna operadoras conforme pesquisa realizada  
 
 ---
 
