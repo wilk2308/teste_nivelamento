@@ -1,4 +1,3 @@
-
 # 📌 Testes de Nivelamento
 
 Este repositório contém a implementação dos testes de nivelamento, abordando:
@@ -74,6 +73,8 @@ A API está implementada no arquivo `api_operadoras.py`. Para rodar a API, use o
   python -m uvicorn api_operadoras:app --reload
   ```
 
+A API também está disponível online em: [https://teste-nivelamento.onrender.com/](https://teste-nivelamento.onrender.com/)
+
 ### 2️⃣ Rodar o Frontend (Vue.js)
 
 Entre na pasta `meu-projeto-vue` e execute o servidor de desenvolvimento:
@@ -92,6 +93,9 @@ Entre na pasta `meu-projeto-vue` e execute o servidor de desenvolvimento:
 ### 3️⃣ Testar a API no Postman
 
 Importe o arquivo `API Busca Operadoras.postman_collection.json` para o Postman e execute os endpoints configurados.
+
+- Para rodar localmente, a URL da API deve ser `http://localhost:8000`
+- Para testar na API online, use `https://teste-nivelamento.onrender.com/`
 
 ---
 
@@ -120,7 +124,7 @@ python scripts/data_transformation.py
 ✔ **Saída esperada:**  
 - Arquivo `Rol_de_Procedimentos.csv` gerado  
 - Arquivo ZIP `Teste_William_Sousa.zip` criado  
-- Substituição das abreviações das colunas OD e AMB pelas descrições completas, conforme a legenda no rodapé 
+- Substituição das abreviações das colunas OD e AMB pelas descrições completas, conforme a legenda no rodapé
 
 ---
 
@@ -136,36 +140,15 @@ mysql -u usuario -p < sql/database_operations.sql
 
 2️⃣ **Importar dados CSV**  
 
-Para carregar os arquivos CSV no MySQL, há duas opções disponíveis:
-
-🔹 Opção 1: Importação via SQL (import_data.sql)
-
-Utiliza o comando LOAD DATA INFILE, que é mais rápido, mas requer permissões adequadas no MySQL.
-
+🔹 Opção 1: Importação via SQL (import_data.sql)  
 ```bash
 mysql -u usuario -p < sql/import_data.sql
 ```  
-✔ Requisitos:
 
-- O MySQL precisa permitir a importação de arquivos (secure-file-priv).
-
-- Os arquivos CSV devem estar no diretório correto para leitura pelo MySQL.
-
-
-🔹 Opção 2: Importação via Python (mysql-connector-python.py)
-
-Usa pandas para carregar os CSVs e insere os dados linha por linha, funcionando mesmo sem permissões especiais.
-
+🔹 Opção 2: Importação via Python (mysql-connector-python.py)  
 ```bash
 python mysql-connector-python.py
-``` 
-✔ Requisitos:
-
-- Python instalado com as dependências (mysql-connector-python, pandas).
-
-- Os arquivos CSV devem estar na pasta dados/.
-
-Ambas as opções garantem que os dados sejam carregados corretamente no banco de dados test. 🚀
+```  
 
 3️⃣ **Executar consultas analíticas**  
 ```bash
@@ -202,3 +185,4 @@ python -m uvicorn api_operadoras:app --reload
 - 📄 [Dados cadastrais das operadoras](https://dadosabertos.ans.gov.br/FTP/PDA/operadoras_de_plano_de_saude_ativas/)  
 
 📌 Este projeto é **confidencial** e não deve ser compartilhado sem autorização.
+
