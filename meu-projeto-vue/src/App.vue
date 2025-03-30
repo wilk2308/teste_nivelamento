@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="container">
+    <h1 class="title">Busca de Operadoras de Saúde</h1>
+    <p class="description">Digite o nome da operadora para buscar informações detalhadas sobre ela.</p>
+    
     <div class="search-box">
       <input
         v-model="searchTerm"
@@ -8,6 +11,7 @@
         @keyup.enter="buscarOperadoras"
       />
       <button @click="buscarOperadoras" class="search-button">Buscar</button>
+      <button @click="limparBusca" class="clear-button">Limpar</button>
     </div>
     
     <div v-if="loading" class="loading-message">
@@ -49,11 +53,10 @@ export default {
       operadoras: [],
       searchTerm: '',
       loading: false,
-      detalhesOperadora: null,  // Para armazenar os detalhes da operadora
+      detalhesOperadora: null,
       apiBaseUrl: process.env.NODE_ENV === 'production' 
-  ? 'https://teste-nivelamento.onrender.com' 
-  : 'http://localhost:8000'
-
+        ? 'https://teste-nivelamento.onrender.com' 
+        : 'http://localhost:8000'
     };
   },
   methods: {
@@ -62,7 +65,7 @@ export default {
         this.loading = true;
         axios.get(`${this.apiBaseUrl}/buscar?q=${this.searchTerm}`)
           .then((response) => {
-            this.operadoras = response.data; // Armazenar os resultados
+            this.operadoras = response.data;
           })
           .catch((error) => {
             console.error("Erro ao buscar operadoras:", error);
@@ -72,17 +75,19 @@ export default {
           });
       }
     },
-
     mostrarDetalhes(operadora) {
-      // Quando clicar na operadora, mostra os detalhes
       this.detalhesOperadora = operadora;
     },
-  },
+    limparBusca() {
+      this.searchTerm = '';
+      this.operadoras = [];
+      this.detalhesOperadora = null;
+    }
+  }
 };
 </script>
 
 <style scoped>
-/* Container geral */
 .container {
   width: 80%;
   margin: 0 auto;
@@ -93,7 +98,18 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Caixa de pesquisa */
+.title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.description {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
 .search-box {
   display: flex;
   justify-content: center;
@@ -115,10 +131,9 @@ export default {
   border-color: #4CAF50;
 }
 
-.search-button {
+.search-button, .clear-button {
   padding: 12px 20px;
   font-size: 16px;
-  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 8px;
@@ -127,15 +142,26 @@ export default {
   transition: background-color 0.3s ease;
 }
 
+.search-button {
+  background-color: #4CAF50;
+}
 .search-button:hover {
   background-color: #45a049;
 }
-
 .search-button:active {
   background-color: #388e3c;
 }
 
-/* Mensagem de carregamento */
+.clear-button {
+  background-color: #d9534f;
+}
+.clear-button:hover {
+  background-color: #c9302c;
+}
+.clear-button:active {
+  background-color: #ac2925;
+}
+
 .loading-message {
   text-align: center;
   font-size: 16px;
@@ -143,7 +169,6 @@ export default {
   margin-top: 10px;
 }
 
-/* Lista de operadoras */
 .operadoras-list {
   list-style-type: none;
   padding: 0;
@@ -164,7 +189,6 @@ export default {
   background-color: #f1f1f1;
 }
 
-/* Detalhes da operadora */
 .detalhes-operadora {
   margin-top: 20px;
   padding: 15px;
