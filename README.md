@@ -73,7 +73,7 @@ A API está implementada no arquivo `api_operadoras.py`. Para rodar a API, use o
   python -m uvicorn api_operadoras:app --reload
   ```
 
-A API também está disponível online em: [https://teste-nivelamento.onrender.com/](https://teste-nivelamento.onrender.com/)
+A API também está disponível online em: [API Online](https://teste-nivelamento.onrender.com/)
 
 ### 2️⃣ Rodar o Frontend (Vue.js)
 
@@ -89,7 +89,7 @@ Entre na pasta `meu-projeto-vue` e execute o servidor de desenvolvimento:
   ```bash
   npm run serve
   ```
-  Além disso, o frontend Vue.js também está disponível online em: https://teste-nivelamento.vercel.app/
+  Além disso, o frontend Vue.js também está disponível online em:[Frontend] (https://teste-nivelamento-1ypjm1qcl-willl23s-projects.vercel.app/)
 
 ### 3️⃣ Testar a API no Postman
 
