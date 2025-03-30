@@ -1,26 +1,37 @@
-from fastapi import FastAPI, Query
-from fastapi.middleware.cors import CORSMiddleware  # Importando CORSMiddleware
+from fastapi import FastAPI, Query, Request
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from typing import List
 
 app = FastAPI()
 
-# Adicionar o middleware CORS para permitir requisições do front-end
-origins = [
-    "http://localhost:8080",  # Permitir o Vue.js rodando localmente
-    "http://127.0.0.1:8080",  # Caso use o 127.0.0.1
-    "https://teste-nivelamento.vercel.app",  # Permitir o Vercel
-    "https://teste-nivelamento-jjhbtdcl3-willl23s-projects.vercel.app/", 
+# Lista de origens fixas (locais e domínio principal do Vercel)
+fixed_origins = [
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "https://teste-nivelamento.vercel.app",
 ]
 
-# Configurar o CORS
+# Configuração inicial do CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Permite acesso de localhost:8080 e o domínio do Vercel
+    allow_origins=["*"],  # Permitir todas as origens inicialmente
     allow_credentials=True,
-    allow_methods=["*"],  # Permite todos os métodos (GET, POST, etc)
-    allow_headers=["*"],  # Permite todos os cabeçalhos
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
+# Middleware para definir dinamicamente a origem permitida
+@app.middleware("http")
+async def dynamic_cors_middleware(request: Request, call_next):
+    response = await call_next(request)
+    origin = request.headers.get("origin")
+
+    # Permitir qualquer domínio *.vercel.app + os fixos
+    if origin and (origin.endswith(".vercel.app") or origin in fixed_origins):
+        response.headers["Access-Control-Allow-Origin"] = origin
+
+    return response
 
 # Carregar o CSV
 CSV_PATH = "dados/Relatorio_cadop.csv"
@@ -32,4 +43,4 @@ def buscar_operadoras(q: str = Query(..., title="Termo de busca")) -> List[dict]
     resultado = df[df.apply(lambda row: row.astype(str).str.contains(q, case=False, na=False).any(), axis=1)]
     return resultado.to_dict(orient="records")
 
-# Rodar com: uvicorn api_busca_operadoras:app --reload
+# Rodar com: uvicorn api_operadoras:app --reload
