@@ -10,6 +10,7 @@ origins = [
     "http://localhost:8080",  # Permitir o Vue.js rodando localmente
     "http://127.0.0.1:8080",  # Caso use o 127.0.0.1
     "https://teste-nivelamento.vercel.app",  # Permitir o Vercel
+    "https://teste-nivelamento-jjhbtdcl3-willl23s-projects.vercel.app/", 
 ]
 
 # Configurar o CORS
