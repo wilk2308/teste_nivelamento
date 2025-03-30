@@ -5,31 +5,33 @@ from typing import List
 
 app = FastAPI()
 
-# Lista de origens fixas (locais e domínio principal do Vercel)
+# Permitir locais fixos e qualquer domínio do Vercel
 fixed_origins = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
     "https://teste-nivelamento.vercel.app",
 ]
 
-# Configuração inicial do CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permitir todas as origens inicialmente
+    allow_origins=["*"],  # Permitir todas as origens
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Middleware para definir dinamicamente a origem permitida
 @app.middleware("http")
-async def dynamic_cors_middleware(request: Request, call_next):
+async def add_cors_header(request: Request, call_next):
+    """Middleware para adicionar CORS dinamicamente"""
     response = await call_next(request)
     origin = request.headers.get("origin")
 
-    # Permitir qualquer domínio *.vercel.app + os fixos
+    # Permitir qualquer subdomínio do Vercel + locais fixos
     if origin and (origin.endswith(".vercel.app") or origin in fixed_origins):
         response.headers["Access-Control-Allow-Origin"] = origin
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type"
+        response.headers["Access-Control-Allow-Credentials"] = "true"
 
     return response
 
