@@ -89,7 +89,7 @@ Entre na pasta `meu-projeto-vue` e execute o servidor de desenvolvimento:
   ```bash
   npm run serve
   ```
-  Além disso, o frontend Vue.js também está disponível online em:[Frontend] (https://teste-nivelamento-1ypjm1qcl-willl23s-projects.vercel.app/)
+  Além disso, o frontend Vue.js também está disponível online em: [Frontend](https://teste-nivelamento-1ypjm1qcl-willl23s-projects.vercel.app/)
 
 ### 3️⃣ Testar a API no Postman
 
